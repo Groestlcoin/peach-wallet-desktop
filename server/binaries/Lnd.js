@@ -202,7 +202,7 @@ class Lnd extends Exec {
 
     /**
      * Function checks if preload not injected yet, and inserts data from "node_modules/preload/"
-     * Data has following directories structure: "lnd/data/chain/bitcoin/testnet/neutrino";
+     * Data has following directories structure: "lnd/data/chain/groestlcoin/testnet/neutrino";
      * @returns {Promise<*>}
      */
     async injectPreload() {
@@ -218,9 +218,9 @@ class Lnd extends Exec {
                 return { ok: false, error: "No name for LND given" };
             }
             // default value is mainnet
-            let dataDir = path.join("data", "chain", "bitcoin", "mainnet");
+            let dataDir = path.join("data", "chain", "groestlcoin", "mainnet");
             if (settings.get.bitcoin.network === "testnet") {
-                dataDir = path.join("data", "chain", "bitcoin", "testnet");
+                dataDir = path.join("data", "chain", "groestlcoin", "testnet");
             }
             const userDataDir = path.join(settings.get.lndPath, this.name, dataDir);
             const preloadDataDir = path.join(settings.get.preloadBasePath, dataDir);
@@ -291,9 +291,9 @@ class Lnd extends Exec {
                 return { ok: false, error: "No name for LND given" };
             }
             // default value is mainnet
-            let dataDir = path.join("data", "chain", "bitcoin", "mainnet");
+            let dataDir = path.join("data", "chain", "groestlcoin", "mainnet");
             if (settings.get.bitcoin.network === "testnet") {
-                dataDir = path.join("data", "chain", "bitcoin", "testnet");
+                dataDir = path.join("data", "chain", "groestlcoin", "testnet");
             }
             const userDataDir = path.join(settings.get.lndPath, this.name, dataDir);
             // if folder is not created we just create a file inside the folder
@@ -449,7 +449,7 @@ class Lnd extends Exec {
             "--debuglevel", getLogLevel(),
             "--tlsextraip", "0.0.0.0",
             "--tlsextraip", (await settings.get.getLndIP(this.name)).split(":")[0],
-            "--bitcoin.node", settings.get.bitcoin.node,
+            "--groestlcoin.node", settings.get.bitcoin.node,
             "--listen", `0.0.0.0:${this._peerPort}`,
             // "--nat",
         ];
@@ -472,16 +472,16 @@ class Lnd extends Exec {
             options.push("--no-macaroons");
         }
         if (settings.get.bitcoin.active) {
-            options.push("--bitcoin.active");
+            options.push("--groestlcoin.active");
         }
         if (settings.get.bitcoin.network === "testnet") {
-            options.push("--bitcoin.testnet");
+            options.push("--groestlcoin.testnet");
         } else if (settings.get.bitcoin.network === "simnet") {
-            options.push("--bitcoin.simnet");
+            options.push("--groestlcoin.simnet");
         } else if (settings.get.bitcoin.network === "mainnet") {
-            options.push("--bitcoin.mainnet");
+            options.push("--groestlcoin.mainnet");
         } else {
-            options.push("--bitcoin.regtest");
+            options.push("--groestlcoin.regtest");
         }
         if (settings.get.bitcoin.node === "neutrino") {
             options.push("--neutrino.connect", settings.get.neutrino.connect);
@@ -766,6 +766,7 @@ class Lnd extends Exec {
         const getInfo = await this._waitRpcAvailability();
         this.starting = false;
         settings.set("lndPeer", [this.name, this._peerPort]);
+        logger.info("[LND] save path = " + settings.get.lndPath);
         settings.saveLndPath(this.name, settings.get.lndPath);
         return getInfo;
     }
