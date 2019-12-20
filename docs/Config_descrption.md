@@ -18,13 +18,13 @@ no_macaroons = false
 log_level = info
 maxpendingchannels = 5
 
-[bitcoin] 
+[groestlcoin] 
 active = true
 node = neutrino 
 network = mainnet
 
 [neutrino]
-connect = proxy.lightningpeach.com:8333
+connect = grsd-mainnet.groestlcoin.org:8333
 
 [btcd]
 rpcuser = rpcuser
@@ -55,13 +55,13 @@ Parameters are described in the following format:
   * `no_macaroons` – Specifies whether to use macaroons. If the parameter has 'true' value, then 'macaroons' won't be used.
   * `log_level` – The level of logging the LND. Possible values: "trace", "debug", "info", "warn", "error", "critical". The default value is "info".
   * `maxpendingchannels` - The maximum number of incoming pending channels permitted per peer.
-* <u>bitcoin</u> – Options for launching lnd: Bitcoin.
+* <u>groestlcoin</u> – Options for launching lnd: Groestlcoin.
   * `active` – Specifies whether the chain is active.
   * `node` – Type of blockchain interface to use. Possible values: "neutrino", "btcd".
   * `network` – The network type. Possible values: "simnet", "regtest", "testnet".
-* <u>neutrino</u> – Options for neutrino node (parameter is used only if value of the `bitcoin.node` parameter is set to "neutrino").
-  * `connect` – Url, which is used by neutrino for connection to bitcoin network. Format: "ip:port".
-* <u>btcd</u> – Options for btcd node (parameter is used only if value of the `bitcoin.node` parameter is set to "btcd").
+* <u>neutrino</u> – Options for neutrino node (parameter is used only if value of the `groestlcoin.node` parameter is set to "neutrino").
+  * `connect` – Url, which is used by neutrino for connection to groestlcoin network. Format: "ip:port".
+* <u>btcd</u> – Options for btcd node (parameter is used only if value of the `groestlcoin.node` parameter is set to "btcd").
   * `rpcuser` – Username for RPC connections.
   * `rpcpass` – Password for RPC connections.
   * `rpchost` – The daemon's rpc listening host. Format: "ip:port".
