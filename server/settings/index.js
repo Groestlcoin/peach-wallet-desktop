@@ -87,7 +87,7 @@ module.exports = Object.freeze({
     saveLndPath: (walletName, lndPath) => calculatedBase.saveLndPath(walletName, lndPath),
     preload: {
         getAnalytics: config.get("analytics"),
-        getBitcoin: config.get("bitcoin"),
+        getBitcoin: config.get("groestlcoin"),
         getDatabasePath: calculatedBase.databasePath,
         getPeach: config.get("peach"),
         getVersion: config.get("version"),
