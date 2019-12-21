@@ -67,7 +67,7 @@ module.exports = {
         network: {
             doc: "[testnet|simnet] The blockchain interface to use.",
             format: String,
-            default: "testnet",
+            default: "mainnet",
         },
     },
     neutrino: {
