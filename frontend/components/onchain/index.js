@@ -152,7 +152,7 @@ class Onchain extends Component {
                                         id="send-coins__to"
                                         className={`form-text ${this.state.toError ? "form-text__error" : ""}`}
                                         name="send-coins__to"
-                                        placeholder="Bitcoin Address"
+                                        placeholder="Groestlcoin Address"
                                         ref={(ref) => {
                                             this.to = ref;
                                         }}

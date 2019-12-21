@@ -83,7 +83,7 @@ class GuidePage extends Component {
                     </nav>
                     <div className="s-channels__header">
                         <div className="tourgide__background" />
-                        <div className="s-channels__btc">1BTC ~ $6,934.98</div>
+                        <div className="s-channels__btc">1GRS ~ $0,17</div>
                         <div className="s-channels__btn button button__solid">CREATE CHANNEL</div>
                     </div>
                 </div>
@@ -126,13 +126,13 @@ class GuidePage extends Component {
                                 Amount
                             </div>
                             <div className="s-regular__row">
-                                0.001 BTC
+                                0.001 GRS
                             </div>
                             <div className="s-regular__row">
-                                0.002 BTC
+                                0.002 GRS
                             </div>
                             <div className="s-regular__row">
-                                0.0000047 BTC
+                                0.0000047 GRS
                             </div>
                         </div>
                         <div className="s-regular__column s-regular__column--25">
@@ -200,7 +200,7 @@ class GuidePage extends Component {
                     </div>
                     <div className="s-stream__row s-stream__row--flexed">
                         <div className="s-stream__row-50">
-                            <div className="s-stream__label">Price per second in BTC</div>
+                            <div className="s-stream__label">Price per second in GRS</div>
                             <div className="s-stream__input s-stream__input--no-before">
                                 <span>0.0003</span>
                             </div>
@@ -247,7 +247,7 @@ class GuidePage extends Component {
                             </div>
                         </div>
                         <div className="s-profile__row">
-                            <div className="s-profile__label">BTC Address</div>
+                            <div className="s-profile__label">GRS Address</div>
                             <div className="s-profile__value">Kpks4j239932bhhf8HD02020nmldjwdkfdjsjiwww222y</div>
                             <div className="s-profile__btns">
                                 <div className="s-profile__refresh" />
@@ -261,16 +261,16 @@ class GuidePage extends Component {
                             <img src={`${window.STATIC_FILES}public/assets/images/payment-request-white.svg`} alt="" />
                             <h3 className="s-profile__title">Payment Request</h3>
                         </div>
-                        <div className="s-profile__uplabel">Amount of BTC</div>
+                        <div className="s-profile__uplabel">Amount of GRS</div>
                         <div className="s-profile__pay_req">
-                            <div className="s-profile__input">0.0 BTC</div>
+                            <div className="s-profile__input">0.0 GRS</div>
                             <div className="s-profile__button">Generate request</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="guide__description">
-                On the <span className="guide__orange">PROFILE</span> page users can find their Lightning ID and BTC
+                On the <span className="guide__orange">PROFILE</span> page users can find their Lightning ID and GRS
                 Address, generate a payment request for another Lightning Network participant to pay it, and other
                 options.
             </div>

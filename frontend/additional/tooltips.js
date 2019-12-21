@@ -20,9 +20,9 @@ export const COPY_TO_CLIPBOARD = helpers.formatMultilineText([
 
 export const RECOVER_WALLET = helpers.formatMultilineText([
     "You may use wallet recovery in 2 cases:",
-    "1) If you want to use your existing Bitcoin wallet for Lightning payments",
+    "1) If you want to use your existing Groestlcoin wallet for Lightning payments",
     "then go through the wallet recovery procedure and specify the seed words",
-    "from your Bitcoin wallet.",
+    "from your Groestlcoin wallet.",
     <Fragment>2) If you have forgotten your Peach Wallet password then enter a <b>new</b></Fragment>,
     <Fragment>wallet name, <b>new</b> password and use the seed words you have for this wallet.</Fragment>,
 ]);
@@ -89,8 +89,8 @@ export const RECURRING_COUNT = helpers.formatMultilineText([
 export const CREATE_CHANNEL = helpers.formatMultilineText([
     "The payment channel allows users to make payments between",
     "each other without broadcasting such transactions to the",
-    "Bitcoin blockchain. Creating a channel can take some time",
-    "as opening transaction should be confirmed on the Bitcoin",
+    "Groestlcoin blockchain. Creating a channel can take some time",
+    "as opening transaction should be confirmed on the Groestlcoin",
     "blockchain.",
 ]);
 
@@ -100,13 +100,13 @@ export const CREATE_CHANNEL = helpers.formatMultilineText([
 
 export const LOCKED_BALANCE = helpers.formatMultilineText([
     "Your on-chain balance which is not yet",
-    "confirmed on the Bitcoin blockchain.",
+    "confirmed on the Groestlcoin blockchain.",
 ]);
 
 export const TRANSACTION_PROCESSING = helpers.formatMultilineText([
     "You need to wait for transaction processing.",
     "Your payment will be processed when it is",
-    "confirmed on the Bitcoin blockchain",
+    "confirmed on the Groestlcoin blockchain",
 ]);
 
 /**
@@ -114,7 +114,7 @@ export const TRANSACTION_PROCESSING = helpers.formatMultilineText([
  */
 
 export const GENERATE_BTC_ADDRESS = helpers.formatMultilineText([
-    "Generate new BTC address",
+    "Generate new GRS address",
 ]);
 
 export const GENERATE_PAYMENT_REQUEST = helpers.formatMultilineText([

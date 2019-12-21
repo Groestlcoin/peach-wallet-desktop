@@ -141,7 +141,7 @@ export const setBitcoinMeasure = (bitcoinMeasureType) => {
             break;
         }
     }
-    window.ipcClient("set-bitcoin-measure", {
+    window.ipcClient("set-groestlcoin-measure", {
         multiplier: payload.bitcoinMeasureMultiplier,
         toFixed: payload.toFixedMeasure,
         type: payload.bitcoinMeasureType,

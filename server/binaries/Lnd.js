@@ -219,7 +219,7 @@ class Lnd extends Exec {
             }
             // default value is mainnet
             let dataDir = path.join("data", "chain", "groestlcoin", "mainnet");
-            if (settings.get.bitcoin.network === "testnet") {
+            if (settings.get.groestlcoin.network === "testnet") {
                 dataDir = path.join("data", "chain", "groestlcoin", "testnet");
             }
             const userDataDir = path.join(settings.get.lndPath, this.name, dataDir);
@@ -256,11 +256,11 @@ class Lnd extends Exec {
     }
 
     /**
-     * Subscribe to changes bitcoin measure from frontend
+     * Subscribe to changes groestlcoin measure from frontend
      * @private
      */
     _registerListener() {
-        registerIpc("set-bitcoin-measure", (event, arg) => {
+        registerIpc("set-groestlcoin-measure", (event, arg) => {
             this._bitcoinMeasure = {
                 type: arg.type,
                 multiplier: arg.multiplier,
@@ -292,7 +292,7 @@ class Lnd extends Exec {
             }
             // default value is mainnet
             let dataDir = path.join("data", "chain", "groestlcoin", "mainnet");
-            if (settings.get.bitcoin.network === "testnet") {
+            if (settings.get.groestlcoin.network === "testnet") {
                 dataDir = path.join("data", "chain", "groestlcoin", "testnet");
             }
             const userDataDir = path.join(settings.get.lndPath, this.name, dataDir);
@@ -449,7 +449,7 @@ class Lnd extends Exec {
             "--debuglevel", getLogLevel(),
             "--tlsextraip", "0.0.0.0",
             "--tlsextraip", (await settings.get.getLndIP(this.name)).split(":")[0],
-            "--groestlcoin.node", settings.get.bitcoin.node,
+            "--groestlcoin.node", settings.get.groestlcoin.node,
             "--listen", `0.0.0.0:${this._peerPort}`,
             // "--nat",
         ];
@@ -471,34 +471,34 @@ class Lnd extends Exec {
         } else {
             options.push("--no-macaroons");
         }
-        if (settings.get.bitcoin.active) {
+        if (settings.get.groestlcoin.active) {
             options.push("--groestlcoin.active");
         }
-        if (settings.get.bitcoin.network === "testnet") {
+        if (settings.get.groestlcoin.network === "testnet") {
             options.push("--groestlcoin.testnet");
-        } else if (settings.get.bitcoin.network === "simnet") {
+        } else if (settings.get.groestlcoin.network === "simnet") {
             options.push("--groestlcoin.simnet");
-        } else if (settings.get.bitcoin.network === "mainnet") {
+        } else if (settings.get.groestlcoin.network === "mainnet") {
             options.push("--groestlcoin.mainnet");
         } else {
             options.push("--groestlcoin.regtest");
         }
-        if (settings.get.bitcoin.node === "neutrino") {
+        if (settings.get.groestlcoin.node === "neutrino") {
             options.push("--neutrino.connect", settings.get.neutrino.connect);
-        } else if (settings.get.bitcoin.node === "btcd") {
+        } else if (settings.get.groestlcoin.node === "grsd") {
             options.push(
-                "--btcd.rpcuser", settings.get.btcd.rpcuser,
-                "--btcd.rpcpass", settings.get.btcd.rpcpass,
-                "--btcd.rpchost", settings.get.btcd.rpchost,
-                "--btcd.rpccert", settings.get.btcd.rpccert,
+                "--grsd.rpcuser", settings.get.grsd.rpcuser,
+                "--grsd.rpcpass", settings.get.grsd.rpcpass,
+                "--grsd.rpchost", settings.get.grsd.rpchost,
+                "--grsd.rpccert", settings.get.grsd.rpccert,
             );
-        } else if (settings.get.bitcoin.node === "bitcoind") {
+        } else if (settings.get.groestlcoin.node === "groestlcoind") {
             options.push(
-                "--bitcoind.rpchost", settings.get.bitcoind.rpchost,
-                "--bitcoind.rpcuser", settings.get.bitcoind.rpcuser,
-                "--bitcoind.rpcpass", settings.get.bitcoind.rpcpass,
-                "--bitcoind.zmqpubrawblock", settings.get.bitcoind.zmqpubrawblock,
-                "--bitcoind.zmqpubrawtx", settings.get.bitcoind.zmqpubrawtx,
+                "--groestlcoind.rpchost", settings.get.groestlcoind.rpchost,
+                "--groestlcoind.rpcuser", settings.get.groestlcoind.rpcuser,
+                "--groestlcoind.rpcpass", settings.get.groestlcoind.rpcpass,
+                "--groestlcoind.zmqpubrawblock", settings.get.groestlcoind.zmqpubrawblock,
+                "--groestlcoind.zmqpubrawtx", settings.get.groestlcoind.zmqpubrawtx,
             );
         }
         if (settings.get.autopilot.active) {

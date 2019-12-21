@@ -166,13 +166,13 @@ describe("Application launch", function () { // eslint-disable-line func-names
             assert.equal(exists, true, "should have profile content");
         });
 
-        it("should copy btc address", async () => {
+        it("should copy grs address", async () => {
             const btcAddr = await app.client.getText(".js-btcAddress .profile__value_value");
             await app.client.click(".js-btcAddress .profile__copy");
-            assert.equal(await app.electron.clipboard.readText(), btcAddr, "btc address not in clipboard");
+            assert.equal(await app.electron.clipboard.readText(), btcAddr, "grs address not in clipboard");
         });
 
-        it("should generate new btc address", async () => {
+        it("should generate new grs address", async () => {
             const oldAddr = await app.client.getText(".js-btcAddress .profile__value_value");
             await app.client.click(".js-btcAddress .profile__reload");
             const newAddr = await app.client.getText(".js-btcAddress .profile__value_value");
@@ -185,15 +185,15 @@ describe("Application launch", function () { // eslint-disable-line func-names
             assert.equal(await app.electron.clipboard.readText(), lightningId, "lightningId not in clipboard");
         });
 
-        it("should receive btc", async () => {
+        it("should receive grs", async () => {
             const btcAddr = await app.client.getText(".js-btcAddress .profile__value_value");
             await utils.fundsLncli("sendcoins", ["--addr", btcAddr, "--amt", config.onchainAmount]);
-            await utils.btcctlGenerate();
+            await utils.grsctlGenerate();
             const amount = await app.client.getText(".balance__value");
             const lightningBalance = amount[0].split("~")[0].trim();
             const onchainBalance = amount[1].split("~")[0].trim();
             assert.equal(lightningBalance, config.stringLightningBalance, "lightning balance should be empty");
-            assert.equal(onchainBalance, config.stringOnchainBalance, "onchain balance should have 1btc");
+            assert.equal(onchainBalance, config.stringOnchainBalance, "onchain balance should have 1grs");
         });
     });
 
@@ -237,7 +237,7 @@ describe("Application launch", function () { // eslint-disable-line func-names
         });
 
         it("should open channel", async () => {
-            await utils.btcctlGenerate(3);
+            await utils.grsctlGenerate(3);
             await app.client.waitUntil(
                 async () => app.client.isExisting(".channel__active"),
                 config.timeoutForElementChecks,
@@ -312,7 +312,7 @@ describe("Application launch", function () { // eslint-disable-line func-names
 
         it("should close channel", async () => {
             await app.client.click(".modal__footer .button__close");
-            await utils.btcctlGenerate(3);
+            await utils.grsctlGenerate(3);
             await app.client.waitUntil(
                 async () => await app.client.isExisting(".channel__deleting") || await app.client.isExisting(".empty-placeholder"), // eslint-disable-line
                 config.timeoutForElementChecks,

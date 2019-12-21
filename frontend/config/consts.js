@@ -16,12 +16,12 @@ export const TIME_RANGE_MEASURE = [
 ];
 
 export const SIMNET_NETWORK = {
-    bech32: "sb",
+    bech32: "sgrs",
     bip32: {
         private: 0x0420b900,
         public: 0x0420bd3a,
     },
-    messagePrefix: "\x18Bitcoin Signed Message:\n",
+    messagePrefix: "\x1cGroestlCoin Signed Message:\n",
     pubKeyHash: 0x3f,
     scriptHash: 0x7b,
     wif: 0x64,

@@ -141,7 +141,7 @@ class ChannelsList extends Component {
                             <OverlayWithHole
                                 class="overlay--create-channel"
                                 title="Create channel"
-                                content="Create channel for making payments with BTC"
+                                content="Create channel for making payments with GRS"
                                 onClose={() => dispatch(operations.hideShowCreateTutorial())}
                                 closeOnWrapper={false}
                             />

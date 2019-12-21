@@ -61,20 +61,20 @@ describe("Settings tests", () => {
             expect(settings.lnd.log_level).to.deep.equal("info");
         });
 
-        it("bitcoin.active set to true", () => {
+        it("groestlcoin.active set to true", () => {
             expect(settings.bitcoin.active).to.deep.equal(true);
         });
 
-        it("bitcoin.node is neutrino", () => {
+        it("groestlcoin.node is neutrino", () => {
             expect(settings.bitcoin.node).to.deep.equal("neutrino");
         });
 
-        it("bitcoin.network is mainnet", () => {
+        it("groestlcoin.network is mainnet", () => {
             expect(settings.bitcoin.network).to.deep.equal("mainnet");
         });
 
         it("correct neutrino.connect url", () => {
-            expect(settings.neutrino.connect).to.deep.equal("btcd-mainnet.lightning.computer");
+            expect(settings.neutrino.connect).to.deep.equal("grsd-mainnet.groestlcoin.org");
         });
 
         it("autopilot active mode set to false", () => {
@@ -173,20 +173,20 @@ describe("Settings tests", () => {
             expect(settings.lnd.log_level).to.deep.equal("info");
         });
 
-        it("bitcoin.active set to true", () => {
+        it("groestlcoin.active set to true", () => {
             expect(settings.bitcoin.active).to.deep.equal(true);
         });
 
-        it("bitcoin.node is neutrino", () => {
+        it("groestlcoin.node is neutrino", () => {
             expect(settings.bitcoin.node).to.deep.equal("neutrino");
         });
 
-        it("bitcoin.network is testnet", () => {
+        it("groestlcoin.network is testnet", () => {
             expect(settings.bitcoin.network).to.deep.equal("testnet");
         });
 
         it("correct neutrino.connect url", () => {
-            expect(settings.neutrino.connect).to.deep.equal("btcd-testnet.lightning.computer");
+            expect(settings.neutrino.connect).to.deep.equal("grsd-testnet.groestlcoin.org");
         });
 
         it("autopilot active mode set to false", () => {

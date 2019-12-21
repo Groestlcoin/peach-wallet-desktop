@@ -63,9 +63,9 @@ export const LIGHTNING_ID_WRONG_LENGTH = "Incorrect length of Lightning ID.";
 export const LIGHTNING_ID_WRONG_LENGTH_NO_CONTACT =
     "Incorrect Lightning ID length, or no contact with such name.";
 
-// BITCOIN ADDRESS PATTERNS
-// Incorrect bitcoin address upon validation
-export const BITCOIN_ADDRESS_WRONG = "Incorrect bitcoin address.";
+// GROESTLCOIN ADDRESS PATTERNS
+// Incorrect groestlcoin address upon validation
+export const BITCOIN_ADDRESS_WRONG = "Incorrect groestlcoin address.";
 
 // CHANNEL HOST PATTERNS
 // Incorrect lightningId + host format

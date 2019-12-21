@@ -6,7 +6,7 @@ import {
 } from "config/consts";
 
 /**
- * @param {string} addr - Bitcoin address
+ * @param {string} addr - Groestlcoin address
  * @param {object} network - Network params
  * @returns {string|null}
  */

@@ -66,7 +66,7 @@ describe("App Unit Tests", () => {
             expect(actions.setAppAsDefaultStatus(data)).to.deep.equal(expectedData);
         });
 
-        it("should create an action to set usd to btc value", () => {
+        it("should create an action to set usd to grs value", () => {
             expectedData.type = types.USD_PER_BTC;
             expect(actions.setUsdPerBtc(data)).to.deep.equal(expectedData);
         });

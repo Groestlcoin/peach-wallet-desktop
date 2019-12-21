@@ -220,7 +220,7 @@ class Profile extends Component {
                                             className="reload profile__reload"
                                             onClick={() => {
                                                 analytics.event({
-                                                    action: "BTC Address",
+                                                    action: "GRS Address",
                                                     category: "Profile",
                                                     label: "New",
                                                 });
@@ -242,7 +242,7 @@ class Profile extends Component {
                                             className="copy profile__copy"
                                             onClick={() => {
                                                 analytics.event({
-                                                    action: "BTC Address",
+                                                    action: "GRS Address",
                                                     category: "Profile",
                                                     label: "Copy",
                                                 });

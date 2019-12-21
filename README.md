@@ -7,7 +7,7 @@
 Peach Wallet is a free cross-platform desktop Lightning Network wallet. It simplifies the process of making micro payments, which are processed seamlessly thanks to user-friendly application and own payment server solution.
 
 ### Technical details
-The Peach Wallet is the Lightning Network wallet that uses **lnd** (Lightning Network Daemon). 
+The Peach Wallet is the Lightning Network wallet that uses **lnd** (Lightning Network Daemon).
 
 GUI is implemented with [Electron](https://electronjs.org) + [React](https://reactjs.org) + [Redux](https://github.com/reactjs/redux).
 
@@ -19,8 +19,8 @@ GUI is implemented with [Electron](https://electronjs.org) + [React](https://rea
 The Peach Wallet supports the following features, which have already become common for existing Lightning Network wallets:
 
 - Sending & receiving payments within the Lightning Network using payment request.
-- Sending & receiving payments on-chain. Regular transactions within Bitcoin blockchain.
-- Transaction history. Details on payments that are sent and received with your wallet account are kept in history section, so you can always have access to them when it is needed. 
+- Sending & receiving payments on-chain. Regular transactions within Groestlcoin blockchain.
+- Transaction history. Details on payments that are sent and received with your wallet account are kept in history section, so you can always have access to them when it is needed.
 - Payment request. You can generate kind of invoice and send it to another person to pay you according to provided payment request.
 - Custom channel opening. You can create custom channel by specifying Lightning ID and host IP of a peer.
 
@@ -37,7 +37,7 @@ You can [install the wallet from source](docs/installation.md).
 
 If you would like to help contribute to the project please contact us.
 
-You can read the Contributing guide [here](CONTRIBUTING.md). 
+You can read the Contributing guide [here](CONTRIBUTING.md).
 
 ### Contacts
 

@@ -194,7 +194,7 @@ describe("Account Unit Tests", () => {
             expect(actions.errorPeers(data)).to.deep.equal(expectedData);
         });
 
-        it("should create an action to add bitcoin account", () => {
+        it("should create an action to add groestlcoin account", () => {
             expectedData.type = types.ERROR_PEERS;
             expect(actions.errorPeers(data)).to.deep.equal(expectedData);
         });
@@ -216,7 +216,7 @@ describe("Account Unit Tests", () => {
             expect(actions.successGenerateQRCode(data)).to.deep.equal(expectedData);
         });
 
-        it("should create an action to set bitcoin measure", () => {
+        it("should create an action to set groestlcoin measure", () => {
             data = consts.SATOSHI_MEASURE.btc;
             expectedData = {
                 payload: {
@@ -230,7 +230,7 @@ describe("Account Unit Tests", () => {
             };
             expect(actions.setBitcoinMeasure(data)).to.deep.equal(expectedData);
             expect(window.ipcClient).to.have.been.calledWith(
-                "set-bitcoin-measure",
+                "set-groestlcoin-measure",
                 {
                     multiplier: consts.SATOSHI_MEASURE.multiplier,
                     toFixed: consts.SATOSHI_MEASURE.toFixed,
@@ -1463,7 +1463,7 @@ describe("Account Unit Tests", () => {
                 expect(await store.dispatch(operations.setBitcoinMeasure("BTC"))).to.deep.equal(expectedData);
                 expect(store.getState().listActions).to.deep.equal(expectedActions);
                 expect(window.ipcClient).to.be.calledOnce;
-                expect(window.ipcClient).to.be.calledWith("set-bitcoin-measure");
+                expect(window.ipcClient).to.be.calledWith("set-groestlcoin-measure");
                 expect(fakeDB.configBuilder).to.be.calledOnce;
                 expect(data.configBuilder.update).not.to.be.called;
             });
@@ -1480,7 +1480,7 @@ describe("Account Unit Tests", () => {
                     .to.deep.equal(expectedData);
                 expect(store.getState().listActions).to.deep.equal(expectedActions);
                 expect(window.ipcClient).to.be.calledOnce;
-                expect(window.ipcClient).to.be.calledWith("set-bitcoin-measure");
+                expect(window.ipcClient).to.be.calledWith("set-groestlcoin-measure");
                 expect(fakeDB.configBuilder).to.be.calledOnce;
                 expect(data.configBuilder.update).to.be.calledOnce;
                 expect(data.configBuilder.update).to.be.calledImmediatelyAfter(fakeDB.configBuilder);
@@ -1505,7 +1505,7 @@ describe("Account Unit Tests", () => {
                 expect(await store.dispatch(operations.setBitcoinMeasure("BTC"))).to.deep.equal(expectedData);
                 expect(store.getState().listActions).to.deep.equal(expectedActions);
                 expect(window.ipcClient).to.be.calledOnce;
-                expect(window.ipcClient).to.be.calledWith("set-bitcoin-measure");
+                expect(window.ipcClient).to.be.calledWith("set-groestlcoin-measure");
                 expect(fakeDB.configBuilder).to.be.calledOnce;
                 expect(data.configBuilder.update).to.be.calledOnce;
                 expect(data.configBuilder.update).to.be.calledImmediatelyAfter(fakeDB.configBuilder);
@@ -2004,17 +2004,17 @@ describe("Account Unit Tests", () => {
                     .to.equal(exceptions.AMOUNT_MORE_MAX((consts.MAX_PAYMENT_REQUEST * 1e-5).toFixed(5)));
             });
 
-            it("should check bitcoin balance without errors", async () => {
+            it("should check groestlcoin balance without errors", async () => {
                 const resp = await store.dispatch(operations.checkAmount(1, "bitcoin"));
                 expect(resp).to.equal(null);
             });
 
-            it("should check bitcoin balance with insufficient funds error", async () => {
+            it("should check groestlcoin balance with insufficient funds error", async () => {
                 const resp = await store.dispatch(operations.checkAmount(2, "bitcoin"));
                 expect(resp).to.equal(exceptions.AMOUNT_ONCHAIN_NOT_ENOUGH_FUNDS);
             });
 
-            it("should check bitcoin balance with low payment error", async () => {
+            it("should check groestlcoin balance with low payment error", async () => {
                 const resp = await store.dispatch(operations.checkAmount(1e-4, "bitcoin"));
                 expect(resp).to.equal(exceptions.AMOUNT_LESS_THAN_FEE(0.11468));
             });

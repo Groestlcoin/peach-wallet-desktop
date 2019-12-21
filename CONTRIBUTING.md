@@ -28,7 +28,7 @@ If your pull request fixes an issue, specify it in the commit message. Here is a
 
 
 ```
- [FEATURE] #105 Commit title 
+ [FEATURE] #105 Commit title
  // use blank line
  Detailed commit description
 ```
@@ -42,17 +42,17 @@ For new features make sure to explain a standard use case to us.
 
 ## Tests
 
-For runing end 2 end tests you need btcd and lnd binaries in `PATH`
+For running tests you need grsd and lnd binaries in `PATH`
 
 ## Appendix
 
 ### Commit Tagging
 
-All commits should be tagged. 
+All commits should be tagged.
 Tags are denoted by square brackets (`[]`) and come at the start of commit title.
 Then write detailed commit message describing what changes you made in the commit.
 
-**Use a blank line to separate details of commit and commit title.** 
+**Use a blank line to separate details of commit and commit title.**
 
 ### Bug Fixes
 

@@ -8,7 +8,7 @@ const execFile = util.promisify(require("child_process").execFile);
 const config = require("./config");
 const helpers = require("../../server/utils/helpers");
 
-let btcdPid;
+let grsdPid;
 let fundsLndPid;
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -41,10 +41,10 @@ const fileBackup = (baseDir, fileName, restore = false) => {
  */
 const writeLocalSettings = async (baseDir) => {
     const baseSettings = [
-        "[bitcoin]",
-        "node = btcd",
+        "[groestlcoin]",
+        "node = grsd",
         "network = simnet",
-        "[btcd]",
+        "[grsd]",
         "rpcuser = kek",
         "rpcpass = kek",
         "rpchost = 127.0.0.1:18556",
@@ -53,9 +53,9 @@ const writeLocalSettings = async (baseDir) => {
     await helpers.writeFile(path.join(baseDir, config.localSettings), baseSettings.join("\n"));
 };
 
-const startBtcd = (miningAddr) => {
+const startGrsd = (miningAddr) => {
     const options = [
-        "--configfile", path.join(__dirname, "test_data", "b_data", "btcd.conf"),
+        "--configfile", path.join(__dirname, "test_data", "b_data", "grsd.conf"),
         "--simnet",
         "--datadir", path.join(__dirname, "test_data", "b_data", "data"),
         "--logdir", path.join(__dirname, "test_data", "b_data", "logs"),
@@ -70,14 +70,14 @@ const startBtcd = (miningAddr) => {
     if (miningAddr) {
         options.push("--miningaddr", miningAddr);
     }
-    console.log("BTCD OPTIONS: ", options.join(" "));
-    const btcd = spawn("btcd", options);
-    btcdPid = btcd.pid;
+    console.log("GRSD OPTIONS: ", options.join(" "));
+    const grsd = spawn("grsd", options);
+    grsdPid = grsd.pid;
 };
 
-const btcctl = async (command, params = []) => {
+const grsctl = async (command, params = []) => {
     const { stdout } = await execFile(
-        "btcctl",
+        "grsctl",
         [
             "--rpcuser", "kek",
             "--rpcpass", "kek",
@@ -88,32 +88,32 @@ const btcctl = async (command, params = []) => {
         ],
     );
     await sleep(config.cmdUtilsTimeout);
-    console.log(`BTCCTL: ${stdout}`);
+    console.log(`GRSCTL: ${stdout}`);
     return stdout;
 };
 
-const btcctlGenerate = async (count = 1) => {
-    await btcctl("generate", [count]);
+const grsctlGenerate = async (count = 1) => {
+    await grsctl("generate", [count]);
 };
 
 const startFundsLnd = () => {
     const options = [
-        "--configfile", path.join(__dirname, "test_data", "l_data", "btcd.conf"),
+        "--configfile", path.join(__dirname, "test_data", "l_data", "grsd.conf"),
         "--no-macaroons",
         "--datadir", path.join(__dirname, "test_data", "l_data", "data"),
         "--logdir", path.join(__dirname, "test_data", "l_data", "logs"),
         "--tlscertpath", path.join(__dirname, "test_data", "l_data", "tls.cert"),
         "--tlskeypath", path.join(__dirname, "test_data", "l_data", "tls.key"),
         "--groestlcoin.active",
-        "--groestlcoin.node", "btcd",
+        "--groestlcoin.node", "grsd",
         "--groestlcoin.simnet",
         "--listen", "127.0.0.1:20202",
         "--rpclisten", "127.0.0.1:20201",
         "--restlisten", "127.0.0.1:20200",
-        "--btcd.rpcuser", "kek",
-        "--btcd.rpcpass", "kek",
-        "--btcd.rpchost", "127.0.0.1:18556",
-        "--btcd.rpccert", path.join(__dirname, "test_data", "b_data", "rpc.cert"),
+        "--grsd.rpcuser", "kek",
+        "--grsd.rpcpass", "kek",
+        "--grsd.rpchost", "127.0.0.1:18556",
+        "--grsd.rpccert", path.join(__dirname, "test_data", "b_data", "rpc.cert"),
         "--noencryptwallet",
     ];
     console.log("LND OPTIONS: ", options.join(" "));
@@ -150,12 +150,12 @@ const isLndAvailable = async () => {
     }
 };
 
-const isBtcdAvailable = async () => {
+const isGrsdAvailable = async () => {
     let available = false;
     while (!available) {
         try {
             await sleep(config.cmdUtilsCallDelay);
-            await btcctl("getinfo");
+            await grsctl("getinfo");
             available = true;
         } catch (e) {
             console.log(e);
@@ -171,8 +171,8 @@ const isBtcdAvailable = async () => {
 const beforeTestPrepare = async (params) => {
     fileBackup(params.baseDir, config.localSettings);
     await writeLocalSettings(params.baseDir);
-    startBtcd();
-    await isBtcdAvailable();
+    startGrsd();
+    await isGrsdAvailable();
     startFundsLnd();
     await isLndAvailable();
     let address = false;
@@ -180,11 +180,11 @@ const beforeTestPrepare = async (params) => {
         ({ address } = await fundsLncli("newaddress", ["p2wkh"]));
         await sleep(config.cmdUtilsCallDelay);
     }
-    process.kill(btcdPid);
-    startBtcd(address);
-    await isBtcdAvailable();
-    await btcctlGenerate(300);
-    await isBtcdAvailable();
+    process.kill(grsdPid);
+    startGrsd(address);
+    await isGrsdAvailable();
+    await grsctlGenerate(300);
+    await isGrsdAvailable();
     // If not restart lnd it hang on sendcoins
     process.kill(fundsLndPid);
     startFundsLnd();
@@ -196,8 +196,8 @@ const beforeTestPrepare = async (params) => {
         synced = info.synced_to_chain;
         await sleep(config.cmdUtilsCallDelay);
     }
-    await btcctlGenerate(10);
-    await isBtcdAvailable();
+    await grsctlGenerate(10);
+    await isGrsdAvailable();
     await fundsLncli("walletbalance");
 };
 
@@ -208,7 +208,7 @@ const beforeTestPrepare = async (params) => {
  */
 const afterTestClear = (params) => {
     fileBackup(params.baseDir, config.localSettings, true);
-    process.kill(btcdPid);
+    process.kill(grsdPid);
     process.kill(fundsLndPid);
     rimraf.sync(params.userPath);
     rimraf.sync(path.join(__dirname, "test_data"));
@@ -216,7 +216,7 @@ const afterTestClear = (params) => {
 
 const generateBlock = async (count = 1) => {
     const { stdout } = await execFile(
-        "btcctl",
+        "grsctl",
         [
             "--simnet",
             "generate", `${count}`,
@@ -244,7 +244,7 @@ module.exports = {
     afterTestClear,
     beforeTestPrepare,
     sleep,
-    btcctlGenerate,
+    grsctlGenerate,
     fundsLncli,
     generateBlock,
     lncli,

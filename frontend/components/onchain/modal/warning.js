@@ -34,7 +34,7 @@ class OnchainWarning extends Component {
                 <div className="modal__body">
                     <div className="row">
                         <div className="col-xs-12">
-                            Recipient address looks like Lightning Id address instead of bitcoin address.
+                            Recipient address looks like Lightning Id address instead of groestlcoin address.
                         </div>
                     </div>
                 </div>

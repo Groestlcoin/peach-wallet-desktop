@@ -9,9 +9,9 @@
   },
   "peach": {
     "pubKey": "0389a4d10d30e6176ea7cd0a7060344108061fc9ca88b02fa52dacea4b0114b316",
-    "host": "testnetwallet.lightningpeach.com",
+    "host": "testnetwallet.groestlcoin.org",
     "peerPort": "9735",
-    "replenishUrl": "testnetwallet.lightningpeach.com",
+    "replenishUrl": "testnetwallet.groestlcoin.org",
     "replenishTLS": true
   }
 }

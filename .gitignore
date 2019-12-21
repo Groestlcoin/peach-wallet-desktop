@@ -5,8 +5,8 @@ build/
 !build/license_en.txt
 *.history
 data.lnlist
-~/.lnd/*
-.lnd/*
+~/.lnd-grs/*
+.lnd-grs/*
 log.log
 wallet-certs/
 executable/

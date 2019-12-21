@@ -53,14 +53,14 @@ module.exports = {
             default: "info",
         },
     },
-    bitcoin: {
+    groestlcoin: {
         active: {
             doc: "If the chain should be active or not.",
             format: Boolean,
             default: true,
         },
         node: {
-            doc: "[btcd|neutrino] The blockchain interface to use.",
+            doc: "[grsd|neutrino] The blockchain interface to use.",
             format: String,
             default: "neutrino",
         },
@@ -76,7 +76,7 @@ module.exports = {
             format: String,
         },
     },
-    btcd: {
+    grsd: {
         rpcuser: {
             doc: "Wallet name for RPC connections",
             format: String,
@@ -95,7 +95,7 @@ module.exports = {
             format: String,
         },
     },
-    bitcoind: {
+    groestlcoind: {
         rpcuser: {
             doc: "Wallet name for RPC connections",
             format: String,

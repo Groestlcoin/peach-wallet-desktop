@@ -35,7 +35,7 @@ config.set("userDataPath", app.getPath("userData"));
 config.set("preloadBasePath", join(appPath, "node_modules", "preload").replace("app.asar", "app.asar.unpacked"));
 config.set("binariesBasePath", join(appPath, "node_modules", "executable").replace("app.asar", "app.asar.unpacked"));
 config.set("binariesLndPath", join(config.get("binariesBasePath"), binaryName("lnd")));
-const dataPath = join(config.get("userDataPath"), ".lnd");
+const dataPath = join(config.get("userDataPath"), ".lnd-grs");
 config.set("dataPath", dataPath);
 config.set("lndPath", dataPath);
 config.set("logFolder", join(config.get("dataPath"), "logs"));
